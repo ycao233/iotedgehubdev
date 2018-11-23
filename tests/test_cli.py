@@ -2,15 +2,15 @@
 # Licensed under the MIT License.
 
 import os
-import platform
-import pytest
 import re
 import subprocess
 import time
+
+import pytest
 from click.testing import CliRunner
 from dotenv import load_dotenv
-from iotedgehubdev import cli
-from iotedgehubdev import configs
+
+from iotedgehubdev import cli, configs
 from iotedgehubdev.edgedockerclient import EdgeDockerClient
 from iotedgehubdev.hostplatform import HostPlatform
 
@@ -20,7 +20,7 @@ if os.path.exists(filename):
     load_dotenv(filename)
 docker_client = EdgeDockerClient()
 
-VALID_DEVICECONNECTIONSTRING = os.environ[platform.system().upper() + '_DEVICE_CONNECTION_STRING']
+VALID_DEVICECONNECTIONSTRING = os.environ['DEVICE_CONNECTION_STRING']
 VALID_IOTHUBCONNECTIONSTRING = os.environ['IOTHUB_CONNECTION_STRING']
 
 device_id = re.findall(".*DeviceId=(.*);SharedAccessKey.*", VALID_DEVICECONNECTIONSTRING)[0]
